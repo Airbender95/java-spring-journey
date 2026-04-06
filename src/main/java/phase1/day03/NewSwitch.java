@@ -17,5 +17,27 @@ public class NewSwitch {
         };
 
         System.out.println(dayName); // Wednesday
+
+        // Multiple values in one case
+        String typeOfDay = switch (day) {
+            case 1, 2, 3, 4, 5 -> "Weekday";
+            case 6, 7 -> "Weekend";
+            default -> "Invalid";
+        };
+
+        System.out.println(typeOfDay); // Weekday
+
+        // Using yield for multi-line cases
+        String priority = switch (day) {
+            case 1 -> "Low";
+            case 2, 3, 4 -> "Medium";
+            case 5 -> {
+                System.out.println("End of week — wrapping up");
+                yield "High";   // yield returns the value from a block
+            }
+            default -> "Unknown";
+        };
+
+        System.out.println(priority);
     }
 }
